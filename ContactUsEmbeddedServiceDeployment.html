@@ -44,7 +44,31 @@
 
         embedded_svc.settings.enabledFeatures = ['LiveAgent'];
         embedded_svc.settings.entryFeature = 'LiveAgent';
-
+        embedded_svc.settings.extraPrechatInfo = [{
+            "entityName": "Contact",
+            "saveToTranscript":"ContactId",
+            "entityFieldMaps": [{
+                "doCreate": false,
+                "doFind": true,
+                "fieldName":"LastName",
+                "isExactMatch": false,
+                "label":"Last Name"
+            },
+                                {
+                                    "doCreate": false,
+                                    "doFind": true,
+                                    "fieldName":"FirstName",
+                                    "isExactMatch": false,
+                                    "label":"First Name"
+                                },
+                                {
+                                    "doCreate": false,
+                                    "doFind": true,
+                                    "fieldName":"Email",
+                                    "isExactMatch": true,
+                                    "label":"Email"
+                                }]
+        }];
         embedded_svc.init(
             'https://spabbaraju-231030-844-demo.my.salesforce.com',
             'https://spabbaraju-231030-844-demo.my.site.com/',
@@ -61,6 +85,7 @@
             }
         );
     };
+	
 
     if (!window.embedded_svc) {
         var s = document.createElement('script');
