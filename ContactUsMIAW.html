@@ -26,7 +26,7 @@
 		//logic to prepopulate prechat fiedsl
 
              window.addEventListener("onEmbeddedMessagingReady", e => {
-
+               console.log("Received the onEmbeddedMessagingReady event…");
 		     //logic for populating visible prechat fields 
 		/*  embeddedservice_bootstrap.prechatAPI.setVisiblePrechatFields({
 					      "_firstName": {
@@ -45,10 +45,13 @@
 	    */ 
 
 		     //create custom mappings and then using piece of code to send hidden prechat values
-		embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({"HiddenEmail" : "amercer@example.com",
-       				 "HiddenFirstName" : "Adam ","HiddenLastName":"Mercer"});
-
-	
+		embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields(
+			          {
+					  "HiddenEmail" : "amercer@example.com",
+       				 	   "HiddenFirstName" : "Adam",
+					  "HiddenLastName":"Mercer"
+				  }
+		                                                            );
 						});
 			                                   	
 
