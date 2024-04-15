@@ -24,11 +24,23 @@
         }); 
 	*/         
 		//logic to prepopulate prechat fiedsl
-			embedded_svc.settings.prepopulatedPrechatFields = {
-				    FirstName: “Adam”,
-				    LastName: “Mercer”,
-				    Email: “amercer@example.com”,
-				};
+
+            window.addEventListener("onEmbeddedMessagingReady", e => {
+		  embeddedservice_bootstrap.prechatAPI.setVisiblePrechatFields({
+					      "_firstName": {
+					      "value": "Adam ",
+					      "isEditableByEndUser": false
+		   					 },
+                                              "_lastName": {
+					      "value": "Mercer ",
+					      "isEditableByEndUser": false
+		   					 },
+                                              "_email": {
+					      "value": "amercer@example.com",
+					      "isEditableByEndUser": false
+		   					 },
+				                                    		}
+			                                               }
 
 			embeddedservice_bootstrap.init(
 				'00D5g00000KLfIK',
