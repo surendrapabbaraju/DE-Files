@@ -1,74 +1,26 @@
-<html>
+<HTML>
+	<BODY>
+		<script type='text/javascript'>
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
 
-	<head>
-		
-	</head>
-<body>
-	<script type='text/javascript'>
-
-			function initEmbeddedMessaging() {
-	    try {
-	        embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US
-	        //logic to prepopulate prechat fiedsl
-
-
-	        /* 
-			window.addEventListener("onEmbeddedMessagingReady", e => {
-               console.log("Received the onEmbeddedMessagingReady event…");
-            //user verification code
-	   embeddedservice_bootstrap.userVerificationAPI.setIdentityToken
-            ({
-            identityTokenType : "JWT", 
-
-            //identityToken :"{The JWT token key value that we created in Stage 4}"
-            identityToken :"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlRva2VuIn0.eyJzdWIiOiJ1c2VybmFtZSIsImlzcyI6InNhbGVzZm9yY2UuY29tIiwiZXhwIjoxODcwNTkyNzA5fQ.kYb9UqAbMImZmC0Z_Uo2qjYmNqYaLd4YQ_qNU_3zFxtTlKycxaDD2gUvlY3tkBUQ7LpiFn5TF8OFaIxE8eGxqgshRaKDApXWeXTF41RTOswZOf93GF2uHJHi80o7JzHgGSfUhDuiu_rbk2XfWTycT4Gklyd3jwZ4h24bC6E14D5i1S5vpQe54g_pHzai-YeY1r_xuSPqpWi9QjvvtlI1LumiX4-yaBM39DxMUh5Zz6k9FX4PDg2mQ1yZsV-9NhB7UT4VkEPv5EBkAMeu5MFK7wbgBJ7a_8Qki4Kf_LiJb70ofx-nL63lpD583bRLxTF5vvee-66c4ym8vGhil461ew"
-            });
-		     //logic for populating visible prechat fields 
-		 embeddedservice_bootstrap.prechatAPI.setVisiblePrechatFields({
-					      "_firstName": {
-					      "value": "Adam",
-					      "isEditableByEndUser": false
-		   					 },
-                                              "_lastName": {
-					      "value": "Mercer",
-					      "isEditableByEndUser": false
-		   					 },
-                                              "_email": {
-					      "value": "amercer@example.com",
-					      "isEditableByEndUser": false
-		   					 }
-						      });  
-	    */
-
-	        //create custom mappings and then using piece of code to send hidden prechat values
-	        /*embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields(
-			          {
-					  "HiddenEmail" : "amercer@example.com",
-       				 	   "HiddenFirstName" : "Adam",
-					  "HiddenLastName":"Mercer"
-				  }
-		                                                            ); */
-	        //embeddedservice_bootstrap.prechatAPI.removeHiddenPrechatFields(["HiddenEmail","HiddenFirstName","HiddenLastName"])
-
-
-
-	embeddedservice_bootstrap.init(
-	    '00D5g00000KLfIK',
-	    'Contact_Us_MIAW_deployement',
-	    'https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115', {
-	        scrt2URL: 'https://spabbaraju-231030-844-demo.my.salesforce-scrt.com'
-	    }
-	);
-	}
-	catch (err) {
-	    console.error('Error loading Embedded Messaging: ', err);
-	}
+			embeddedservice_bootstrap.init(
+				'00D5g00000KLfIK',
+				'Contact_Us_MIAW_deployement',
+				'https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115',
+				{
+					scrt2URL: 'https://spabbaraju-231030-844-demo.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
 	};
-
-        </script>
+</script>
 <script type='text/javascript' src='https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
-</body>
+	</BODY>
 
-
-</html>
+	
+</HTML>
