@@ -1,0 +1,26 @@
+<HTML>
+	<BODY>
+		<script type='text/javascript'>
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+			embeddedservice_bootstrap.init(
+				'00D5g00000FAot9',
+				'MIAW_Test',
+				'https://spabbaraju-220825-366-demo.my.site.com/ESWMIAWTest1718809527379',
+				{
+					scrt2URL: 'https://spabbaraju-220825-366-demo.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
+</script>
+<script type='text/javascript' src='https://spabbaraju-220825-366-demo.my.site.com/ESWMIAWTest1718809527379/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
+	</BODY>
+
+	
+</HTML>
