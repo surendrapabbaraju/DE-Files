@@ -1,6 +1,5 @@
 <html>
-<body>
-	<script type='text/javascript'>
+<script type='text/javascript'>
 	function initEmbeddedMessaging() {
 		try {
 			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
@@ -18,9 +17,26 @@
 		}
 	};
 </script>
-<script type='text/javascript' src='https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
-
-</body>
-
-
+	<script type='text/javascript' src='https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+    <button id="launchChatButton" onclick="launchChat()">
+        Chat with our Agents!!!
+    </button>
+    <script>
+	function launchChat() {
+		embeddedservice_bootstrap.utilAPI.launchChat()
+		.then(() => {
+			console.log(
+				'Inside Launch Chat'
+			);
+		}).catch(() => {
+			console.log(
+				'Inside Launch Chat catch Block'
+			);
+		}).finally(() => {
+			console.log(
+				'Inside Launch Chat finally Block'
+			);
+		});
+		}
+	</script>
 </html>
