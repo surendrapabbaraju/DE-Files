@@ -17,8 +17,11 @@
 		}
 	};
 </script>
-	<script type='text/javascript' src='https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js'></script>
-   <script>
+	<script type='text/javascript' src='https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+    <button id="launchChatButton" onclick="launchChat()">
+        Chat with our Agents!!!
+    </button>
+    <script>
 	function launchChat() {
 		embeddedservice_bootstrap.utilAPI.launchChat()
 		.then(() => {
@@ -35,8 +38,9 @@
 			);
 		});
 		}
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('The page has loaded!');
+    launchChat();
+});
 	</script>
- <body onload="launchChat()">
-	 Hello
- </body>
 </html>
