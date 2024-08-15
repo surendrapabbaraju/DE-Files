@@ -30,7 +30,7 @@
             console.log( 'Inside onload' );
                 initEmbeddedMessaging();
 		setTimeout(() => {
-			    console.log('Function called after 5000 milliseconds');
+			    console.log('Function called after 3000 milliseconds');
                            embeddedservice_bootstrap.utilAPI.launchChat();
 			}, 5000);
                
