@@ -13,6 +13,7 @@
 					scrt2URL: 'https://spabbaraju-231030-844-demo.my.salesforce-scrt.com'
 				}
 			);
+                 embeddedservice_bootstrap.utilAPI.launchChat();
 		} catch (err) {
 			console.error('Error loading Embedded Messaging: ', err);
 		}
@@ -23,21 +24,5 @@
 <button id="launchChatButton" onclick="launchChat()">
         Chat will load automatically
     </button>
-
-    <script>
-        window.onload=function() {      
-        
-            console.log( 'Inside onload' );
-                initEmbeddedMessaging();
-		setTimeout(() => {
-			    console.log('Function called after 3000 milliseconds');
-                           embeddedservice_bootstrap.utilAPI.launchChat();
-			}, 5000);
-               
-                
-            };
-	    
-
-    </script>
 
 </html>
