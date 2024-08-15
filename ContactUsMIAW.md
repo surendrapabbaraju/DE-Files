@@ -44,7 +44,11 @@
 					Messaging is initiated and launched.
 				*/
                 initEmbeddedMessaging();
-                embeddedservice_bootstrap.utilAPI.launchChat();
+		setTimeout(() => {
+			    console.log('Function called after 2000 milliseconds');
+                           embeddedservice_bootstrap.utilAPI.launchChat();
+			}, 2000);
+               
                 
             }
             
