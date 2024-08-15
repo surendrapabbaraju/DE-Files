@@ -1,4 +1,5 @@
 <html>
+	<body>
 	<script type='text/javascript'>
 	function initEmbeddedMessaging() {
 		console.log('Inside initEmbeddedMessaging');
@@ -27,5 +28,5 @@
 <button id="launchChatButton" onclick="launchChat()">
         Chat will load automatically
     </button>
-
+  </body>
 </html>
