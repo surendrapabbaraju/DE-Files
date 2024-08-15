@@ -57,9 +57,7 @@
             initEmbeddedMessaging();
             console.log("Loading Messaging now");
             setTimeout(() => {
-                embeddedservice_bootstrap.utilAPI
-                    .launchChat()
-                    .then(() => {
+                embeddedservice_bootstrap.utilAPI.launchChat().then(() => {
                         console.log("Inside Launch Chat");
                     })
                     .catch(() => {
