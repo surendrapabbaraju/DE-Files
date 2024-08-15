@@ -31,6 +31,7 @@
             let startMessaging = sessionStorage.getItem(
                 'messagingStartCheck'
             );
+	      console.log( 'startMessaging value is' + startMessaging);
 
             if ( 
                 startMessaging &&
