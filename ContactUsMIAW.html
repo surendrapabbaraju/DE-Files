@@ -1,6 +1,6 @@
 <html>
-	<head>
-		<script type='text/javascript'>
+
+<script type='text/javascript'>
 	function initEmbeddedMessaging() {
 		try {
 			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
@@ -17,37 +17,62 @@
 			console.error('Error loading Embedded Messaging: ', err);
 		}
 	};
-			
 </script>
 <script type='text/javascript' src='https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
-	<script>
+    <button id="launchChatButton" onclick="launchChat()">
+        Chat with our Agents!!!
+    </button>
+ <script>
+        window.onload=function() {      
+        
+            console.log( 'Inside onload' );
+            let startMessaging = sessionStorage.getItem(
+                'messagingStartCheck'
+            );
+
+            if ( 
+                startMessaging &&
+                startMessaging === 'YES'
+            ) {
+
+                console.log( 'Messaging was in progress' );        
+				/*
+					For session continuity when the page loads, 
+					Messaging is initiated and launched.
+				*/
+                initEmbeddedMessaging();
+                embeddedservice_bootstrap.utilAPI.launchChat();
+                
+            }
+            
+        };
         function launchChat() {
-            embeddedservice_bootstrap.utilAPI.launchChat()
-	            .then(() => {
-	                // Success handler used to perform actions
-	                // when the chat client launches successfully.
-	                // For example, create a method that disables the launch chat button.
-			    console.log('Inside Launch chat');
-	                disableLaunchChatButton();
-	            }).catch(() => {
-	                // Error handler used to perform actions
-	                // if the chat client fails to launch.
-	                // For example, create a method that hides the launch chat button.
-			    console.log('Inside Catch Block');
-	                hideLaunchChatButton();
-	            }).finally(() => {
-	                // Finally handler used to perform any clean-up actions
-	                // regardless of whether the chat client launches successfully or not.
-	                // For example, create a method that logs the user’s attempt to chat.
-			    console.log('Inside Finally Block');
-	                logEndUserAttemptToChat();
-	            });
-    }
-</script>		
-		
-</head>
+        
+			/*
+				For session continuity , sessionStorage is used.
+			*/
+            sessionStorage.setItem(
+                'messagingStartCheck',
+                'YES'
+            );
+            initEmbeddedMessaging();
+            console.log("Loading Messaging now");
+            setTimeout(() => {
+                embeddedservice_bootstrap.utilAPI
+                    .launchChat()
+                    .then(() => {
+                        console.log("Inside Launch Chat");
+                    })
+                    .catch(() => {
+                        console.log("Inside Launch Chat catch Block");
+                    })
+                    .finally(() => {
+                        console.log("Inside Launch Chat finally Block");
+                    });
+            }, 2000);
+            
+        }
+    </script>
+
 	
-
-<button id="launchChatButton" onclick="launchChat()">Click to contact support</button>
-
 </html>
