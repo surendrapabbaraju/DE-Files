@@ -1,6 +1,5 @@
 <html>
-	// Get this code from the Code Snippet page of an Embedded Messaging deployment.
-// Without this code, the Messaging for Web client doesn’t load.
+
 <script type='text/javascript'>
     function initEmbeddedMessaging() {
         try {
@@ -21,10 +20,10 @@
 </script>
 <script type='text/javascript' src='https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
-// Create a custom button or invitation to launch the web chat client.
+
 <button id="launchChatButton" onclick="launchChat()">Click to contact support</button>
 
-// Call Launch Chat API.
+
 <script>
     function launchChat() {
         embeddedservice_bootstrap.utilAPI.launchChat()
