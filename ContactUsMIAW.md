@@ -21,7 +21,7 @@
 <script type='text/javascript' src='https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js'></script>
 
 <button id="launchChatButton" onclick="launchChat()">
-        Chat with our Agents!!!
+        Chat will load automatically
     </button>
 
     <script>
@@ -71,37 +71,12 @@
                     .finally(() => {
                         console.log("Inside Launch Chat finally Block");
                     });
-            }, 2000);
+            }, 5000);
 			  
 	    }
             
         };
-        function launchChat() {
-        
-			/*
-				For session continuity , sessionStorage is used.
-			*/
-            sessionStorage.setItem(
-                'messagingStartCheck',
-                'YES'
-            );
-            initEmbeddedMessaging();
-            console.log("Loading Messaging now");
-            setTimeout(() => {
-                embeddedservice_bootstrap.utilAPI
-                    .launchChat()
-                    .then(() => {
-                        console.log("Inside Launch Chat");
-                    })
-                    .catch(() => {
-                        console.log("Inside Launch Chat catch Block");
-                    })
-                    .finally(() => {
-                        console.log("Inside Launch Chat finally Block");
-                    });
-            }, 2000);
-            
-        }
+
     </script>
 
 </html>
