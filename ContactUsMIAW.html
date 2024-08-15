@@ -1,5 +1,6 @@
 <html>
-	<script type='text/javascript'>
+	<head>
+		<script type='text/javascript'>
 	function initEmbeddedMessaging() {
 		try {
 			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
@@ -16,9 +17,9 @@
 			console.error('Error loading Embedded Messaging: ', err);
 		}
 	};
+			
 </script>
 <script type='text/javascript' src='https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
-<button id="launchChatButton" onclick="launchChat()">Click to contact support</button>
 	<script>
         function launchChat() {
             embeddedservice_bootstrap.utilAPI.launchChat()
@@ -42,5 +43,11 @@
 	                logEndUserAttemptToChat();
 	            });
     }
-</script>
+</script>		
+		
+</head>
+	
+
+<button id="launchChatButton" onclick="launchChat()">Click to contact support</button>
+
 </html>
