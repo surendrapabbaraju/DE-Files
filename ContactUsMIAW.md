@@ -28,54 +28,15 @@
         window.onload=function() {      
         
             console.log( 'Inside onload' );
-            let startMessaging = sessionStorage.getItem(
-                'messagingStartCheck'
-            );
-	      console.log( 'startMessaging value is' + startMessaging);
-
-            if ( 
-                startMessaging &&
-                startMessaging === 'YES'
-            ) {
-
-                console.log( 'Messaging was in progress' );        
-				/*
-					For session continuity when the page loads, 
-					Messaging is initiated and launched.
-				*/
                 initEmbeddedMessaging();
 		setTimeout(() => {
 			    console.log('Function called after 2000 milliseconds');
                            embeddedservice_bootstrap.utilAPI.launchChat();
-			}, 2000);
+			}, 5000);
                
                 
-            }
-	    if (!startMessaging){
-                          console.log( 'No Messaging session in progress' );  
-            sessionStorage.setItem(
-                'messagingStartCheck',
-                'YES'
-            );
-            initEmbeddedMessaging();
-            console.log("Loading Messaging now");
-            setTimeout(() => {
-                embeddedservice_bootstrap.utilAPI
-                    .launchChat()
-                    .then(() => {
-                        console.log("Inside Launch Chat");
-                    })
-                    .catch(() => {
-                        console.log("Inside Launch Chat catch Block");
-                    })
-                    .finally(() => {
-                        console.log("Inside Launch Chat finally Block");
-                    });
-            }, 5000);
-			  
-	    }
-            
-        };
+            };
+	    
 
     </script>
 
