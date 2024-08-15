@@ -18,26 +18,6 @@
 		}
 	};
 </script>
-<script type='text/javascript' src='https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js'></script>
-
-<button id="launchChatButton" onclick="launchChat()">
-        Chat will load automatically
-    </button>
-
-    <script>
-        window.onload=function() {      
-        
-            console.log( 'Inside onload' );
-                initEmbeddedMessaging();
-		setTimeout(() => {
-			    console.log('Function called after 5000 milliseconds');
-                           embeddedservice_bootstrap.utilAPI.launchChat();
-			}, 5000);
-               
-                
-            };
-	    
-
-    </script>
+<script type='text/javascript' src='https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
 </html>
