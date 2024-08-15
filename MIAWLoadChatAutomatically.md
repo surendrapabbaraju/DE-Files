@@ -13,7 +13,10 @@
 					scrt2URL: 'https://spabbaraju-231030-844-demo.my.salesforce-scrt.com'
 				}
 			);
-                 embeddedservice_bootstrap.utilAPI.launchChat();
+                 	etTimeout(() => {
+			    console.log('Function called after 3000 milliseconds');
+                           embeddedservice_bootstrap.utilAPI.launchChat();
+			}, 3000);
 		} catch (err) {
 			console.error('Error loading Embedded Messaging: ', err);
 		}
