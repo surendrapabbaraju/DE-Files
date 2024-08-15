@@ -14,7 +14,7 @@
 					scrt2URL: 'https://spabbaraju-231030-844-demo.my.salesforce-scrt.com'
 				}
 			);
-                 	etTimeout(() => {
+                 	setTimeout(() => {
 			    console.log('Function called after 3000 milliseconds');
                            embeddedservice_bootstrap.utilAPI.launchChat();
 			}, 3000);
