@@ -51,6 +51,29 @@
                
                 
             }
+	    if (!startMessaging){
+                          console.log( 'No Messaging session in progress' );  
+            sessionStorage.setItem(
+                'messagingStartCheck',
+                'YES'
+            );
+            initEmbeddedMessaging();
+            console.log("Loading Messaging now");
+            setTimeout(() => {
+                embeddedservice_bootstrap.utilAPI
+                    .launchChat()
+                    .then(() => {
+                        console.log("Inside Launch Chat");
+                    })
+                    .catch(() => {
+                        console.log("Inside Launch Chat catch Block");
+                    })
+                    .finally(() => {
+                        console.log("Inside Launch Chat finally Block");
+                    });
+            }, 2000);
+			  
+	    }
             
         };
         function launchChat() {
