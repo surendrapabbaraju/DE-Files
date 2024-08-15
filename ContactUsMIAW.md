@@ -26,52 +26,13 @@
         window.onload=function() {      
         
             console.log( 'Inside onload' );
-            let startMessaging = sessionStorage.getItem(
-                'messagingStartCheck'
-            );
-
-            if ( 
-                startMessaging &&
-                startMessaging === 'YES'
-            ) {
-
-                console.log( 'Messaging was in progress' );        
-				/*
-					For session continuity when the page loads, 
-					Messaging is initiated and launched.
-				*/
                 initEmbeddedMessaging();
                 embeddedservice_bootstrap.utilAPI.launchChat();
                 
             }
             
         };
-        function launchChat() {
-        
-			/*
-				For session continuity , sessionStorage is used.
-			*/
-            sessionStorage.setItem(
-                'messagingStartCheck',
-                'YES'
-            );
-            initEmbeddedMessaging();
-            console.log("Loading Messaging now");
-            setTimeout(() => {
-                embeddedservice_bootstrap.utilAPI
-                    .launchChat()
-                    .then(() => {
-                        console.log("Inside Launch Chat");
-                    })
-                    .catch(() => {
-                        console.log("Inside Launch Chat catch Block");
-                    })
-                    .finally(() => {
-                        console.log("Inside Launch Chat finally Block");
-                    });
-            }, 2000);
-            
-        }
+
     </script>
 
 
