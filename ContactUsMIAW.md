@@ -17,22 +17,30 @@
 		}
 	};
 </script>
-<script type='text/javascript' src='https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js'></script>
+<script type='text/javascript' src='https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 <button id="launchChatButton" onclick="launchChat()">
         Chat with our Agents!!!
     </button>
-
-    <script>
-        window.onload=function() {      
+<script>
+	window.addEventListener('load', function() {
+        console.log('The page fully loaded, including all dependent resources!');
+	embeddedservice_bootstrap.utilAPI.launchChat()
+		.then(() => {
+			console.log(
+				'Inside Launch Chat'
+			);
+		}).catch(() => {
+			console.log(
+				'Inside Launch Chat catch Block'
+			);
+		}).finally(() => {
+			console.log(
+				'Inside Launch Chat finally Block'
+			);
+		});
         
-            console.log( 'Inside onload' );
-                initEmbeddedMessaging();
-                embeddedservice_bootstrap.utilAPI.launchChat();
-               
-            
-        };
-
-    </script>
-
+});
+</script>
+  
 
 </html>
