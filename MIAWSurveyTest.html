@@ -1,27 +1,55 @@
-<HTML>
-	<BODY>
-		<script type='text/javascript'>
-	function initEmbeddedMessaging() {
-		try {
-			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
-
-			embeddedservice_bootstrap.init(
-				'00D5g00000FAot9',
-				'MIAW_Test',
-				'https://spabbaraju-220825-366-demo.my.site.com/ESWMIAWTest1718809527379',
-				{
-					scrt2URL: 'https://spabbaraju-220825-366-demo.my.salesforce-scrt.com'
-				}
-			);
-		} catch (err) {
-			console.error('Error loading Embedded Messaging: ', err);
-		}
-	};
-</script>
-<script type='text/javascript' src='https://spabbaraju-220825-366-demo.my.site.com/ESWMIAWTest1718809527379/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
-
-
-	</BODY>
-
+<html>
+       <head>
+	       <script type='text/javascript'>
+	        function initEmbeddedMessaging() {
+			try {
+				embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
 	
-</HTML>
+				embeddedservice_bootstrap.init(
+					'00D5g00000KLfIK',
+					'Contact_Us_MIAW_deployement',
+					'https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115',
+					{
+						scrt2URL: 'https://spabbaraju-231030-844-demo.my.salesforce-scrt.com'
+					}
+				);
+			} catch (err) {
+				console.error('Error loading Embedded Messaging: ', err);
+			}
+		};
+		       function showButton(){
+  console.log("show",  embeddedservice_bootstrap);
+  embeddedservice_bootstrap.utilAPI.showChatButton();
+}
+
+			function hideButton(){
+			  console.log("hide",  embeddedservice_bootstrap);
+			   embeddedservice_bootstrap.utilAPI.hideChatButton();
+			}
+			
+			function launchChat(){
+				embeddedservice_bootstrap.utilAPI
+			  .launchChat()
+			  .then(function (success) {
+			    // Add actions to run after the chat client launches successfully.
+			  })
+			  .catch(function (error) {
+			    onsole.log(error);
+			  })
+			  .finally(function () {
+			    // Add actions to run whether the chat client launches
+			    // successfully or not.
+			  });
+			}
+          </script>
+       </head>
+	
+	<body>
+		<button  onclick="showButton()">Show Chat</button>
+		<button  onclick="hideButton()">Hide Chat</button>
+		<button  onclick="launchChat()">Launch Chat</button>
+      <script type='text/javascript' src='https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js'></script>
+
+		
+	</body>
+</html>
