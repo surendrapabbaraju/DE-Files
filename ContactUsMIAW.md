@@ -28,8 +28,7 @@
             console.log( 'Inside onload' );
                 initEmbeddedMessaging();
                 embeddedservice_bootstrap.utilAPI.launchChat();
-                
-            }
+               
             
         };
 
