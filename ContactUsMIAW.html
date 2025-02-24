@@ -31,9 +31,16 @@
 			console.error('Error loading Embedded Messaging: ', err);
 		}
 	};
+ function closeChat()
+	 {
+		   embeddedservice_bootstrap.userVerificationAPI .clearSession();
+		   console.log('Clearing the Chat');
+
+	 }
+			
 </script>
 <script type='text/javascript' src='https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
-
+<button onclick="closeChat()">Close the Chat</button>
 	</body>
 	
 </html>
