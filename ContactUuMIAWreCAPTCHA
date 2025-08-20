@@ -1,0 +1,53 @@
+<html>
+  <body>
+    <!-- Google reCAPTCHA v3 script -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lc4JqwrAAAAAHgCmlEWLp8oYDqo4aOOetCbrZbj"></script>
+
+    <script type='text/javascript'>
+      function initEmbeddedMessaging() {
+        console.log("Inside initEmbeddedMessaging()");
+        try {
+          embeddedservice_bootstrap.settings.language = 'en_US';
+
+          window.addEventListener("onEmbeddedMessagingReady", () => {
+            console.log("Received the onEmbeddedMessagingReady event…");
+
+            // Generate reCAPTCHA token
+            grecaptcha.ready(function () {
+              grecaptcha.execute('6Lc4JqwrAAAAAHgCmlEWLp8oYDqo4aOOetCbrZbj', { action: 'submit' }).then(function (token) {
+                console.log("Received reCAPTCHA token: ", token);
+
+                // Send token + any other hidden fields to Salesforce
+                embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+                  "Subject": "From Website",
+                  "captchaToken": token
+                });
+              });
+            });
+          });
+
+          embeddedservice_bootstrap.init(
+            '00D5g00000KLfIK', // Org ID
+            'Contact_Us_MIAW_deployement', // Deployment Name
+            'https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115',
+            {
+              scrt2URL: 'https://spabbaraju-231030-844-demo.my.salesforce-scrt.com'
+            }
+          );
+        } catch (err) {
+          console.error('Error loading Embedded Messaging: ', err);
+        }
+      }
+
+      function closeChat() {
+        embeddedservice_bootstrap.userVerificationAPI.clearSession();
+        console.log('Clearing the Chat');
+      }
+    </script>
+
+    <!-- Salesforce bootstrap -->
+    <script type='text/javascript' src='https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
+    <button onclick="closeChat()">Close the Chat</button>
+  </body>
+</html>
