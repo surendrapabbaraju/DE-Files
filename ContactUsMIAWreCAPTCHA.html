@@ -1,67 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Salesforce Messaging with reCAPTCHA v3</title>
-  
-  <!-- Load reCAPTCHA v3 -->
-  <script src="https://www.google.com/recaptcha/api.js?render=6Lc7zqwrAAAAAGQKQZsptTAJpLmZv5IQZE0auC_X" async defer></script>
-</head>
-<body>
-  <h2>Salesforce Messaging with reCAPTCHA</h2>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Salesforce Messaging + reCAPTCHA v3</title>
+    <!-- Load reCAPTCHA v3 with your site key -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lc7zqwrAAAAAGQKQZsptTAJpLmZv5IQZE0auC_X" async defer></script>
+  </head>
+  <body>
+    <h2>Messaging with reCAPTCHA v3</h2>
 
-  <script type="text/javascript">
-    function initEmbeddedMessaging() {
-      console.log("Inside initEmbeddedMessaging()");
+    <script type="text/javascript">
+      function initEmbeddedMessaging() {
+        console.log("Inside initEmbeddedMessaging()");
+        try {
+          embeddedservice_bootstrap.settings.language = 'en_US';
 
-      try {
-        embeddedservice_bootstrap.settings.language = 'en_US';
+          window.addEventListener("onEmbeddedMessagingReady", () => {
+            console.log("onEmbeddedMessagingReady fired");
 
-        // Wait for Messaging bootstrap ready
-        window.addEventListener("onEmbeddedMessagingReady", () => {
-          console.log("Received the onEmbeddedMessagingReady event…");
+            // Run reCAPTCHA only after API is ready
+            grecaptcha.ready(function() {
+              grecaptcha.execute('6Lc7zqwrAAAAAGQKQZsptTAJpLmZv5IQZE0auC_X', {action: 'submit'})
+                .then(function(token) {
+                  console.log("reCAPTCHA token:", token);
 
-          // Run reCAPTCHA and pass token to Salesforce
-          grecaptcha.ready(function () {
-            grecaptcha.execute('6Lc7zqwrAAAAAGQKQZsptTAJpLmZv5IQZE0auC_X', {action: 'submit'})
-              .then(function (token) {
-                console.log("reCAPTCHA token generated: ", token);
-
-                // Attach token as hidden prechat field
-                embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-                  "Subject": "From Website",
-                  "reCAPTCHAToken__c": token
+                  // Pass token to Salesforce hidden field
+                  embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+                    "Subject": "From Website",
+                    "reCAPTCHAToken__c": token
+                  });
+                })
+                .catch(function(err) {
+                  console.error("reCAPTCHA execution failed:", err);
                 });
-              });
+            });
           });
-        });
 
-        embeddedservice_bootstrap.init(
-          '00D5g00000KLfIK',   // orgId
-          'Contact_Us_MIAW_deployement',   // deploymentName
-          'https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115',   // URL
-          {
-            scrt2URL: 'https://spabbaraju-231030-844-demo.my.salesforce-scrt.com'
-          }
-        );
-      } catch (err) {
-        console.error('Error loading Embedded Messaging: ', err);
+          embeddedservice_bootstrap.init(
+            '00D5g00000KLfIK',   // ORG ID
+            'Contact_Us_MIAW_deployement', // Deployment name
+            'https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115',
+            { scrt2URL: 'https://spabbaraju-231030-844-demo.my.salesforce-scrt.com' }
+          );
+
+        } catch (err) {
+          console.error("Error loading Embedded Messaging:", err);
+        }
       }
-    }
+    </script>
 
-    // Function to clear session
-    function closeChat() {
-      embeddedservice_bootstrap.userVerificationAPI.clearSession();
-      console.log('Clearing the Chat');
-    }
-  </script>
-
-  <!-- Load Salesforce bootstrap and init -->
-  <script type="text/javascript" 
-          src="https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js" 
-          onload="initEmbeddedMessaging()">
-  </script>
-
-  <button onclick="closeChat()">Close the Chat</button>
-</body>
+    <!-- Salesforce Messaging bootstrap -->
+    <script type="text/javascript"
+      src="https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js"
+      onload="initEmbeddedMessaging()">
+    </script>
+  </body>
 </html>
