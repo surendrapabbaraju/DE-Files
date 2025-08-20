@@ -1,53 +1,78 @@
-<html>
-  <body>
-    <!-- Google reCAPTCHA v3 script -->
-    <script src="https://www.google.com/recaptcha/api.js?render=6Lc4JqwrAAAAAHgCmlEWLp8oYDqo4aOOetCbrZbj"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Salesforce Messaging with reCAPTCHA v3</title>
 
-    <script type='text/javascript'>
-      function initEmbeddedMessaging() {
-        console.log("Inside initEmbeddedMessaging()");
-        try {
-          embeddedservice_bootstrap.settings.language = 'en_US';
+  <!-- Google reCAPTCHA v3 script -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6Lc7zqwrAAAAAGQKQZsptTAJpLmZv5IQZE0auC_X" async defer></script>
+</head>
+<body>
+  <script type="text/javascript">
+    function initEmbeddedMessaging() {
+      console.log("Inside initEmbeddedMessaging()");
+      try {
+        embeddedservice_bootstrap.settings.language = 'en_US';
 
-          window.addEventListener("onEmbeddedMessagingReady", () => {
-            console.log("Received the onEmbeddedMessagingReady event…");
+        window.addEventListener("onEmbeddedMessagingReady", () => {
+          console.log("Received the onEmbeddedMessagingReady event…");
+          executeRecaptcha();
+        });
 
-            // Generate reCAPTCHA token
-            grecaptcha.ready(function () {
-              grecaptcha.execute('6Lc4JqwrAAAAAHgCmlEWLp8oYDqo4aOOetCbrZbj', { action: 'submit' }).then(function (token) {
-                console.log("Received reCAPTCHA token: ", token);
+        embeddedservice_bootstrap.init(
+          '00D5g00000KLfIK',  // Org ID
+          'Contact_Us_MIAW_deployement', // Deployment Name
+          'https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115',
+          {
+            scrt2URL: 'https://spabbaraju-231030-844-demo.my.salesforce-scrt.com'
+          }
+        );
+      } catch (err) {
+        console.error('Error loading Embedded Messaging: ', err);
+      }
+    }
 
-                // Send token + any other hidden fields to Salesforce
-                embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-                  "Subject": "From Website",
-                  "captchaToken": token
-                });
+    // Execute reCAPTCHA and send token to Salesforce
+    function executeRecaptcha(retries = 5) {
+      if (typeof grecaptcha !== "undefined" && grecaptcha.execute) {
+        grecaptcha.ready(function () {
+          console.log("grecaptcha is ready…");
+
+          grecaptcha.execute('6Lc7zqwrAAAAAGQKQZsptTAJpLmZv5IQZE0auC_X', { action: 'submit' })
+            .then(function (token) {
+              console.log("Received reCAPTCHA token: ", token);
+
+              embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+                "Subject": "From HTML Page",
+                "captchaToken": token
               });
+            })
+            .catch(function (err) {
+              console.error("Error executing reCAPTCHA:", err);
             });
-          });
-
-          embeddedservice_bootstrap.init(
-            '00D5g00000KLfIK', // Org ID
-            'Contact_Us_MIAW_deployement', // Deployment Name
-            'https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115',
-            {
-              scrt2URL: 'https://spabbaraju-231030-844-demo.my.salesforce-scrt.com'
-            }
-          );
-        } catch (err) {
-          console.error('Error loading Embedded Messaging: ', err);
+        });
+      } else {
+        if (retries > 0) {
+          console.warn("grecaptcha not ready yet, retrying…");
+          setTimeout(() => executeRecaptcha(retries - 1), 1000);
+        } else {
+          console.error("Failed to load reCAPTCHA after retries");
         }
       }
+    }
 
-      function closeChat() {
-        embeddedservice_bootstrap.userVerificationAPI.clearSession();
-        console.log('Clearing the Chat');
-      }
-    </script>
+    function closeChat() {
+      embeddedservice_bootstrap.userVerificationAPI.clearSession();
+      console.log('Clearing the Chat');
+    }
+  </script>
 
-    <!-- Salesforce bootstrap -->
-    <script type='text/javascript' src='https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+  <!-- Salesforce Messaging bootstrap -->
+  <script type="text/javascript"
+    src="https://spabbaraju-231030-844-demo.my.site.com/ESWContactUsMIAWdeploy1699278255115/assets/js/bootstrap.min.js"
+    onload="initEmbeddedMessaging()">
+  </script>
 
-    <button onclick="closeChat()">Close the Chat</button>
-  </body>
+  <button onclick="closeChat()">Close the Chat</button>
+</body>
 </html>
